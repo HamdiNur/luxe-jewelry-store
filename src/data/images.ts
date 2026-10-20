@@ -1,0 +1,16 @@
+export const productImages = {
+  aureliaRing: require("../../assets/products/aurelia-ring.jpg"),
+  solsticeBand: require("../../assets/products/solstice-band.jpg"),
+  celesteSolitaire: require("../../assets/products/celeste-solitaire.jpg"),
+  goldenHourRing: require("../../assets/products/golden-hour-ring.jpg"),
+  lunaPendant: require("../../assets/products/luna-pendant.jpg"),
+  solChain: require("../../assets/products/sol-chain.jpg"),
+  amaraNecklace: require("../../assets/products/amara-necklace.jpg"),
+  edenLariat: require("../../assets/products/eden-lariat.jpg"),
+  solHoops: require("../../assets/products/sol-hoops.jpg"),
+  solHoops2: require("../../assets/products/sol-hoops9.jpg"),
+  pearlMuse: require("../../assets/products/pearl-muse.jpg"),
+  pearlMuse2: require("../../assets/products/pearl-muse-2.jpg"),
+  novaDrops: require("../../assets/products/nova-drops.jpg"),
+  irisStuds: require("../../assets/products/iris-studs.jpg"),
+};
