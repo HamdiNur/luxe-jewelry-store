@@ -150,7 +150,9 @@ export const products: Product[] = [
     category: "bracelets",
     price: 290,
     description:
-      "Minimalist gemstone studs that add a quiet sparkle to any outfit.",
+    //   "Minimalist gemstone studs that add a quiet sparkle to any outfit.",
+    "A radiant gold bracelet featuring a continuous row of sparkling round stones in elegant bezel settings. Its polished finish and timeless silhouette bring refined brilliance to every occasion.",
+  //     material: "Gold-plated metal with cubic zirconia stones"
     material: "Sterling silver, cubic zirconia",
     metals: ["silver", "gold"],
     image: img.irisStuds,

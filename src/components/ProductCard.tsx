@@ -5,11 +5,14 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import type { Product } from "@/types/product";
 import { formatPrice } from "@/utils/format";
+import { useFavoritesStore } from "@/store/favoritesStore";
 
 type Props = { product: Product; onPress?: () => void };
 
 export default function ProductCard({ product, onPress }: Props) {
   const router = useRouter();
+  const liked = useFavoritesStore((s) => s.ids.includes(product.id));
+  const toggle = useFavoritesStore((s) => s.toggle);
 
   const open = () => {
     if (onPress) return onPress();
@@ -34,6 +37,13 @@ export default function ProductCard({ product, onPress }: Props) {
             <Text className="font-body-medium text-[10px] uppercase tracking-widest text-gold-light">New</Text>
           </View>
         )}
+        <Pressable
+          onPress={() => toggle(product.id)}
+          hitSlop={8}
+          className="absolute right-3 top-3 h-9 w-9 items-center justify-center rounded-full bg-white/90"
+        >
+          <Ionicons name={liked ? "heart" : "heart-outline"} size={18} color={liked ? "#B8934A" : "#111111"} />
+        </Pressable>
       </View>
       <Text numberOfLines={1} className="mt-3 font-body-medium text-sm text-ink">
         {product.name}
