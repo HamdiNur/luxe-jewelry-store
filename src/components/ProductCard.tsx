@@ -1,6 +1,7 @@
 import { Pressable, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import type { Product } from "@/types/product";
 import { formatPrice } from "@/utils/format";
@@ -8,8 +9,15 @@ import { formatPrice } from "@/utils/format";
 type Props = { product: Product; onPress?: () => void };
 
 export default function ProductCard({ product, onPress }: Props) {
+  const router = useRouter();
+
+  const open = () => {
+    if (onPress) return onPress();
+    router.push({ pathname: "/product/[id]", params: { id: product.id } });
+  };
+
   return (
-    <Pressable onPress={onPress} className="flex-1 active:opacity-80">
+    <Pressable onPress={open} className="flex-1 active:opacity-80">
       <View className="aspect-[4/5] overflow-hidden rounded-2xl bg-ivory">
         {product.image ? (
           <Image source={product.image} contentFit="cover" style={{ flex: 1 }} transition={200} />

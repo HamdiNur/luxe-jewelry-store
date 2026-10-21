@@ -155,4 +155,16 @@ export const products: Product[] = [
     metals: ["silver", "gold"],
     image: img.irisStuds,
   },
+  //   {
+  //     id: "b1",
+  //     name: "Soleil Cuff"r,
+  //     category: "bracelets",
+  //     price: 890,
+  //     description:
+  //       "A radiant gold bracelet featuring a continuous row of sparkling round stones in elegant bezel settings. Its polished finish and timeless silhouette bring refined brilliance to every occasion.",
+  //     material: "Gold-plated metal with cubic zirconia stones",
+  //     metals: ["gold"],
+  //     image: img.soleilCuff,
+  //     featured: true,
+  //   },
 ];
