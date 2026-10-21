@@ -12,6 +12,6 @@ export const productImages = {
   pearlMuse: require("../../assets/products/pearl-muse.jpg"),
   pearlMuse2: require("../../assets/products/pearl-muse-2.jpg"),
   novaDrops: require("../../assets/products/nova-drops.jpg"),
-  irisStuds: require("../../assets/products/iris-studs.jpg"),
+  irisStuds: require("../../assets/products/soleil-cuff.jpg"),
 //   soleilCuff: require("../../assets/products/soleil-cuff.jfif"),
 };
