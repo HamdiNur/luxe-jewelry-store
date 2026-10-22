@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
+import { ClerkProvider } from "@clerk/expo";
+import { tokenCache } from "@clerk/expo/token-cache";
+
 import {
   useFonts,
   CormorantGaramond_500Medium,
@@ -12,6 +15,14 @@ import {
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from "@expo-google-fonts/inter";
 
 SplashScreen.preventAutoHideAsync();
+
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+if (!publishableKey) {
+  throw new Error(
+    "Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY. Add it to your .env file, then restart with: npx expo start -c"
+  );
+}
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -30,9 +41,9 @@ export default function RootLayout() {
   if (!loaded && !error) return null;
 
   return (
-    <>
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }} />
-    </>
+    </ClerkProvider>
   );
 }
