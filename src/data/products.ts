@@ -2,14 +2,13 @@ import type { Product } from "@/types/product";
 import { productImages as img } from "./images";
 
 export const products: Product[] = [
-  // Collection 1: The Signature Edit (Rings)
+  // --- Rings ---
   {
     id: "r1",
     name: "Aurelia Ring",
     category: "rings",
     price: 980,
-    description:
-      "An elegant polished gold ring with a softly domed profile, made to be worn every day.",
+    description: "An elegant polished gold ring with a softly domed profile, made to be worn every day.",
     material: "18k solid gold",
     metals: ["gold", "silver"],
     sizes: ["5", "6", "7", "8", "9"],
@@ -21,8 +20,7 @@ export const products: Product[] = [
     name: "Solstice Band",
     category: "rings",
     price: 520,
-    description:
-      "A minimalist stacking band with a smooth finish. Wear one or layer several.",
+    description: "A minimalist stacking band with a smooth finish. Wear one or layer several.",
     material: "14k gold",
     metals: ["gold", "silver"],
     sizes: ["5", "6", "7", "8", "9"],
@@ -34,8 +32,7 @@ export const products: Product[] = [
     name: "Celeste Solitaire",
     category: "rings",
     price: 2150,
-    description:
-      "A classic solitaire with a brilliant-cut stone raised on a slim, polished band.",
+    description: "A classic solitaire with a brilliant-cut stone raised on a slim, polished band.",
     material: "Platinum-finish silver, 0.5ct lab-grown diamond",
     metals: ["silver", "gold"],
     sizes: ["5", "6", "7", "8"],
@@ -47,22 +44,20 @@ export const products: Product[] = [
     name: "Golden Hour Ring",
     category: "rings",
     price: 1350,
-    description:
-      "A sculptural statement ring in flowing gold curves that catch the light from every angle.",
+    description: "A sculptural statement ring in flowing gold curves that catch the light from every angle.",
     material: "18k gold",
     metals: ["gold"],
     sizes: ["5", "6", "7", "8", "9"],
     image: img.goldenHourRing,
   },
 
-  // Collection 2: Golden Threads (Necklaces)
+  // --- Necklaces ---
   {
     id: "n1",
     name: "Luna Pendant",
     category: "necklaces",
     price: 640,
-    description:
-      "A delicate crescent pendant on a whisper-fine chain, resting just below the collarbone.",
+    description: "A delicate crescent pendant on a whisper-fine chain, resting just below the collarbone.",
     material: "14k gold, diamond accent",
     metals: ["gold", "silver"],
     sizes: ["40cm", "45cm"],
@@ -74,8 +69,7 @@ export const products: Product[] = [
     name: "Sol Chain",
     category: "necklaces",
     price: 480,
-    description:
-      "A refined gold chain with a subtle shine. Wear it alone or as the base of a layered look.",
+    description: "A refined gold chain with a subtle shine. Wear it alone or as the base of a layered look.",
     material: "14k gold vermeil",
     metals: ["gold", "silver"],
     sizes: ["40cm", "45cm", "50cm"],
@@ -86,8 +80,7 @@ export const products: Product[] = [
     name: "Amara Necklace",
     category: "necklaces",
     price: 720,
-    description:
-      "An elegant layered necklace with two fine strands at different lengths.",
+    description: "An elegant layered necklace with two fine strands at different lengths.",
     material: "14k gold",
     metals: ["gold"],
     sizes: ["40cm", "45cm"],
@@ -99,21 +92,19 @@ export const products: Product[] = [
     name: "Eden Lariat",
     category: "necklaces",
     price: 590,
-    description:
-      "A fine lariat necklace with a delicate drop. Slip it through itself for an adjustable fit.",
+    description: "A fine lariat necklace with a delicate drop. Slip it through itself for an adjustable fit.",
     material: "14k gold",
     metals: ["gold", "silver"],
     image: img.edenLariat,
   },
 
-  // Collection 3: The Earring Atelier (Earrings)
+  // --- Earrings ---
   {
     id: "e1",
     name: "Sol Hoops",
     category: "earrings",
     price: 360,
-    description:
-      "Polished gold hoops with a comfortable hinged closure, light enough for all-day wear.",
+    description: "Polished gold hoops with a comfortable hinged closure, light enough for all-day wear.",
     material: "14k gold vermeil",
     metals: ["gold", "silver"],
     image: img.solHoops,
@@ -125,8 +116,7 @@ export const products: Product[] = [
     name: "Pearl Muse",
     category: "earrings",
     price: 450,
-    description:
-      "Lustrous freshwater pearls with a soft, creamy glow, finished with gold settings.",
+    description: "Lustrous freshwater pearls with a soft, creamy glow, finished with gold settings.",
     material: "Freshwater pearls, 14k gold",
     metals: ["gold"],
     image: img.pearlMuse,
@@ -137,8 +127,7 @@ export const products: Product[] = [
     name: "Nova Drops",
     category: "earrings",
     price: 540,
-    description:
-      "Modern gold drop earrings with a sleek, molten shape. Bold without being heavy.",
+    description: "Modern gold drop earrings with a sleek, molten shape. Bold without being heavy.",
     material: "18k gold vermeil",
     metals: ["gold"],
     image: img.novaDrops,
@@ -147,26 +136,122 @@ export const products: Product[] = [
   {
     id: "e4",
     name: "Iris Studs",
-    category: "bracelets",
+    category: "earrings",
     price: 290,
-    description:
-    //   "Minimalist gemstone studs that add a quiet sparkle to any outfit.",
-    "A radiant gold bracelet featuring a continuous row of sparkling round stones in elegant bezel settings. Its polished finish and timeless silhouette bring refined brilliance to every occasion.",
-  //     material: "Gold-plated metal with cubic zirconia stones"
+    description: "Minimalist gemstone studs that add a quiet sparkle to any outfit.",
     material: "Sterling silver, cubic zirconia",
     metals: ["silver", "gold"],
     image: img.irisStuds,
   },
-  //   {
-  //     id: "b1",
-  //     name: "Soleil Cuff"r,
-  //     category: "bracelets",
-  //     price: 890,
-  //     description:
-  //       "A radiant gold bracelet featuring a continuous row of sparkling round stones in elegant bezel settings. Its polished finish and timeless silhouette bring refined brilliance to every occasion.",
-  //     material: "Gold-plated metal with cubic zirconia stones",
-  //     metals: ["gold"],
-  //     image: img.soleilCuff,
-  //     featured: true,
-  //   },
+
+  // --- Bracelets ---
+  {
+    id: "b1",
+    name: "Iris Bracelet",
+    category: "bracelets",
+    price: 520,
+    description: "A radiant gold bracelet featuring a continuous row of sparkling round stones in elegant bezel settings.",
+    material: "Gold-plated metal with cubic zirconia stones",
+    metals: ["gold", "silver"],
+    image: img.irisStuds, // using iris asset or appropriate mapping
+  },
+  {
+    id: "b2",
+    name: "Soleil Cuff",
+    category: "bracelets",
+    price: 680,
+    description: "An open structural cuff with a brushed gold finish inspired by radiant sunlight.",
+    material: "18k brushed gold vermeil",
+    metals: ["gold"],
+    image: img.soleilCuff,
+    isNew: true,
+  },
+  {
+    id: "b3",
+    name: "Elysian Link Collection",
+    category: "bracelets",
+    price: 850,
+    description: "Interlocking polished links that drape fluidly around the wrist.",
+    material: "14k solid gold",
+    metals: ["gold", "silver"],
+    image: img.elysianLinkCollection,
+    featured: true,
+  },
+
+  // --- Watches (New Category Added) ---
+  {
+    id: "w1",
+    name: "Aurelia Watch",
+    category: "watches",
+    price: 1850,
+    description: "A sophisticated timepiece featuring a sleek minimalist dial paired with a polished gold mesh strap.",
+    material: "Stainless steel with gold plating, sapphire crystal",
+    metals: ["gold"],
+    image: img.aureliaWatch,
+    featured: true,
+  },
+  {
+    id: "w2",
+    name: "Atlas Watch",
+    category: "watches",
+    price: 2100,
+    description: "A classic luxury watch designed with precision quartz movement and an understated luxury leather strap.",
+    material: "Rose gold finish, genuine leather",
+    metals: ["gold", "silver"],
+    image: img.atlasWatch,
+    isNew: true,
+  },
+  {
+    id: "w3",
+    name: "Chronos",
+    category: "watches",
+    price: 2400,
+    description: "An iconic statement timepiece crafted for timeless elegance and accurate daily wear.",
+    material: "18k gold finish, stainless steel back",
+    metals: ["gold"],
+    image: img.chronos,
+  },
+
+  // --- Luxury / Special Additions ---
+  {
+    id: "l1",
+    name: "Eternal",
+    category: "luxury",
+    price: 3200,
+    description: "An exquisite high-end luxury piece crafted to commemorate life's most precious milestones.",
+    material: "Platinum and certified conflict-free diamonds",
+    metals: ["silver"],
+    image: img.eternal,
+    featured: true,
+  },
+  {
+    id: "l2",
+    name: "Solaria",
+    category: "necklaces",
+    price: 1950,
+    description: "Radiant high-jewellery design celebrating brilliance and organic asymmetry.",
+    material: "18k gold and fine gemstones",
+    metals: ["gold"],
+    image: img.solaria,
+  },
+  {
+    id: "l3",
+    name: "Teardrop",
+    category: "luxury",
+    price: 1450,
+    description: "A delicate teardrop design suspended gracefully to catch every nuance of light.",
+    material: "14k white gold and crystal accents",
+    metals: ["silver"],
+    image: img.teardrop,
+  },
+  {
+    id: "l4",
+    name: "Crown",
+    category: "luxury",
+    price: 2800,
+    description: "Regal styling meets everyday refinement in this majestic crown-inspired statement piece.",
+    material: "18k yellow gold",
+    metals: ["gold"],
+    image: img.crown,
+  },
 ];

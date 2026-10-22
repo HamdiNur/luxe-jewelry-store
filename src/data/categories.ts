@@ -5,6 +5,6 @@ export const categories: Category[] = [
   { id: "necklaces", label: "Necklaces" },
   { id: "bracelets", label: "Bracelets" },
   { id: "earrings", label: "Earrings" },
-  { id: "watches", label: "Watches" },
+  { id: "watches", label: "Watches" }, // Added watches category
   { id: "luxury", label: "Luxury" },
 ];
