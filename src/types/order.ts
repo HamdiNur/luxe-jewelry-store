@@ -17,6 +17,8 @@ export interface Order {
   createdAt: string; // ISO date
   lines: OrderLine[];
   subtotal: number;
+  discount?: number;
   shipping: number;
   total: number;
+  
 }
