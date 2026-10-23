@@ -4,11 +4,30 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth, useUser } from "@clerk/expo";
 import PrimaryButton from "@/components/PrimaryButton";
+import MenuRow from "@/components/MenuRow";
+import { useMyOrders } from "@/hooks/useMyOrders";
+import { useMembership } from "@/hooks/useMembership";
+import { useCartLines } from "@/hooks/useCartLines";
+import { useFavoritesStore } from "@/store/favoritesStore";
+import { formatDate } from "@/utils/format";
+
+function Stat({ value, label }: { value: number; label: string }) {
+  return (
+    <View className="flex-1 items-center">
+      <Text className="font-display-bold text-3xl text-ink">{value}</Text>
+      <Text className="font-body text-xs text-muted">{label}</Text>
+    </View>
+  );
+}
 
 export default function Profile() {
   const router = useRouter();
   const { isLoaded, isSignedIn, signOut } = useAuth();
   const { user } = useUser();
+  const { orders } = useMyOrders();
+  const { isMember, plan, startedAt } = useMembership();
+  const { count: cartCount } = useCartLines();
+  const favoriteCount = useFavoritesStore((s) => s.ids.length);
 
   if (!isLoaded) {
     return (
@@ -57,11 +76,12 @@ export default function Profile() {
   }
 
   const email = user?.primaryEmailAddress?.emailAddress ?? "";
-  const initial = (email[0] ?? "L").toUpperCase();
+  const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(" ");
+  const initial = (fullName[0] ?? email[0] ?? "L").toUpperCase();
 
   return (
     <SafeAreaView className="flex-1 bg-cream" edges={["top"]}>
-      <ScrollView contentContainerStyle={{ padding: 20 }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         <Text className="font-display-bold text-4xl text-ink">Profile</Text>
 
         <View className="mt-6 flex-row items-center rounded-2xl border border-line bg-ivory p-4">
@@ -69,16 +89,66 @@ export default function Profile() {
             <Text className="font-display-bold text-2xl text-gold-light">{initial}</Text>
           </View>
           <View className="ml-4 flex-1">
-            <Text className="font-body-semibold text-base text-ink">Welcome back</Text>
+            <View className="flex-row items-center">
+              <Text numberOfLines={1} className="flex-shrink font-body-semibold text-base text-ink">
+                {fullName || "Welcome back"}
+              </Text>
+              {isMember && (
+                <View className="ml-2 rounded-full bg-gold px-2 py-0.5">
+                  <Text className="font-body-semibold text-[9px] uppercase tracking-widest text-ink">Premium</Text>
+                </View>
+              )}
+            </View>
             <Text numberOfLines={1} className="font-body text-sm text-muted">
               {email}
             </Text>
           </View>
         </View>
 
-        <Text className="mt-6 text-center font-body text-xs text-muted">
-          Orders, settings and membership are coming in the next stages.
-        </Text>
+        <View className="mt-4 flex-row rounded-2xl border border-line bg-ivory py-4">
+          <Stat value={orders.length} label="Orders" />
+          <View className="w-px bg-line" />
+          <Stat value={favoriteCount} label="Favorites" />
+          <View className="w-px bg-line" />
+          <Stat value={cartCount} label="In cart" />
+        </View>
+
+        {isMember ? (
+          <View className="mt-4 rounded-2xl bg-ink p-5">
+            <Text className="font-body-medium text-xs uppercase tracking-[3px] text-gold-light">LUXE Premium</Text>
+            <Text className="mt-1 font-display-semibold text-2xl text-white">Membership active</Text>
+            <Text className="mt-1 font-body text-sm capitalize text-white/70">
+              {plan} plan{startedAt ? ` · since ${formatDate(startedAt)}` : ""} · demo
+            </Text>
+          </View>
+        ) : (
+          <View className="mt-4 rounded-2xl border border-gold bg-ivory p-5">
+            <Text className="font-body-medium text-xs uppercase tracking-[3px] text-gold">LUXE Premium</Text>
+            <Text className="mt-1 font-display-semibold text-2xl text-ink">Unlock member benefits</Text>
+            <Text className="mt-1 font-body text-sm leading-5 text-muted">
+              Exclusive collections, early access and member discounts.
+            </Text>
+            <View className="mt-4">
+              <PrimaryButton label="Explore membership" onPress={() => router.push("/membership")} />
+            </View>
+          </View>
+        )}
+
+        <View className="mt-4">
+          <MenuRow
+            icon="receipt-outline"
+            label="Order history"
+            detail={orders.length > 0 ? String(orders.length) : undefined}
+            onPress={() => router.push("/orders")}
+          />
+          <MenuRow icon="settings-outline" label="Account settings" onPress={() => router.push("/settings")} />
+          <MenuRow
+            icon="diamond-outline"
+            label="Membership"
+            detail={isMember ? "Active" : "Not a member"}
+            onPress={() => router.push("/membership")}
+          />
+        </View>
 
         <View className="mt-8">
           <PrimaryButton label="Sign out" variant="outline" onPress={confirmSignOut} />
