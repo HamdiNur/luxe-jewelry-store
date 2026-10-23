@@ -2,7 +2,7 @@ import type { Product } from "@/types/product";
 import { productImages as img } from "./images";
 
 export const products: Product[] = [
-  // --- Rings ---
+  // ==================== RINGS ====================
   {
     id: "r1",
     name: "Aurelia Ring",
@@ -50,8 +50,31 @@ export const products: Product[] = [
     sizes: ["5", "6", "7", "8", "9"],
     image: img.goldenHourRing,
   },
+  {
+    id: "r5",
+    name: "Emerald Drop Ring",
+    category: "rings",
+    price: 1750,
+    description: "A striking yellow-gold ring featuring a rich oval-cut green emerald solitaire setting.",
+    material: "18k yellow gold, natural emerald",
+    metals: ["gold"],
+    sizes: ["5", "6", "7", "8"],
+    image: img.emeraldDropRing,
+    isNew: true,
+  },
+  {
+    id: "r6",
+    name: "Monolith Ring",
+    category: "rings",
+    price: 1890,
+    description: "A bold, raised solitaire ring presented on an ivory display pedestal.",
+    material: "18k yellow gold, brilliant-cut diamond",
+    metals: ["gold"],
+    sizes: ["5", "6", "7", "8"],
+    image: img.monolith,
+  },
 
-  // --- Necklaces ---
+  // ==================== NECKLACES ====================
   {
     id: "n1",
     name: "Luna Pendant",
@@ -97,8 +120,31 @@ export const products: Product[] = [
     metals: ["gold", "silver"],
     image: img.edenLariat,
   },
+  {
+    id: "n5",
+    name: "Emerald Pendant Necklace",
+    category: "necklaces",
+    price: 2100,
+    description: "A vibrant pear-cut emerald suspended on a fine 18k gold chain.",
+    material: "18k gold, natural emerald",
+    metals: ["gold"],
+    sizes: ["40cm", "45cm"],
+    image: img.emeraldPendantNecklace,
+    featured: true,
+  },
+  {
+    id: "n6",
+    name: "Solaria",
+    category: "necklaces",
+    price: 1950,
+    description: "Radiant high-jewellery design celebrating brilliance and organic asymmetry.",
+    material: "18k gold and fine gemstones",
+    metals: ["gold"],
+    sizes: ["40cm", "45cm"],
+    image: img.solaria,
+  },
 
-  // --- Earrings ---
+  // ==================== EARRINGS ====================
   {
     id: "e1",
     name: "Sol Hoops",
@@ -108,7 +154,7 @@ export const products: Product[] = [
     material: "14k gold vermeil",
     metals: ["gold", "silver"],
     image: img.solHoops,
-    gallery: [img.solHoops, img.solHoops2],
+    gallery: [img.solHoops, img.solHoops9],
     featured: true,
   },
   {
@@ -143,20 +189,31 @@ export const products: Product[] = [
     metals: ["silver", "gold"],
     image: img.irisStuds,
   },
-
-  // --- Bracelets ---
   {
-    id: "b1",
-    name: "Iris Bracelet",
-    category: "bracelets",
-    price: 520,
-    description: "A radiant gold bracelet featuring a continuous row of sparkling round stones in elegant bezel settings.",
-    material: "Gold-plated metal with cubic zirconia stones",
-    metals: ["gold", "silver"],
-    image: img.irisStuds, // using iris asset or appropriate mapping
+    id: "e5",
+    name: "Emerald Drop Earrings",
+    category: "earrings",
+    price: 1250,
+    description: "Elegant drop earrings featuring vivid oval emeralds set in handcrafted gold mounts.",
+    material: "18k gold, emeralds",
+    metals: ["gold"],
+    image: img.emeraldDropEarrings,
+    isNew: true,
   },
   {
-    id: "b2",
+    id: "e6",
+    name: "Nova Stud Set",
+    category: "earrings",
+    price: 380,
+    description: "Matching minimalist organic gold studs and hammered hoop set.",
+    material: "14k solid gold",
+    metals: ["gold"],
+    image: img.nova,
+  },
+
+  // ==================== BRACELETS ====================
+  {
+    id: "b1",
     name: "Soleil Cuff",
     category: "bracelets",
     price: 680,
@@ -167,7 +224,7 @@ export const products: Product[] = [
     isNew: true,
   },
   {
-    id: "b3",
+    id: "b2",
     name: "Elysian Link Collection",
     category: "bracelets",
     price: 850,
@@ -177,8 +234,39 @@ export const products: Product[] = [
     image: img.elysianLinkCollection,
     featured: true,
   },
+  {
+    id: "b3",
+    name: "Aria Twisted Bangle",
+    category: "bracelets",
+    price: 920,
+    description: "A sculptural open-ended bangle crafted with two fluidly twisting strands of solid polished gold.",
+    material: "18k polished yellow gold",
+    metals: ["gold"],
+    image: img.aria,
+    featured: true,
+  },
+  {
+    id: "b4",
+    name: "Éclat Diamond Link Bracelet",
+    category: "bracelets",
+    price: 1450,
+    description: "An oval gold bracelet embellished with subtle double rows of micro-pave clear diamonds.",
+    material: "18k gold, brilliant diamonds",
+    metals: ["gold"],
+    image: img.eclat,
+  },
+  {
+    id: "b5",
+    name: "Imperia Bangle Display",
+    category: "bracelets",
+    price: 1100,
+    description: "A minimalist gold cuff presented in an open velvet luxury packaging box.",
+    material: "18k solid yellow gold",
+    metals: ["gold"],
+    image: img.imperia,
+  },
 
-  // --- Watches (New Category Added) ---
+  // ==================== WATCHES ====================
   {
     id: "w1",
     name: "Aurelia Watch",
@@ -211,8 +299,39 @@ export const products: Product[] = [
     metals: ["gold"],
     image: img.chronos,
   },
+  {
+    id: "w4",
+    name: "Lumera Watch",
+    category: "watches",
+    price: 1950,
+    description: "Centered luxury watch display set against an open cream presentation box.",
+    material: "Gold stainless steel, crystal bezel",
+    metals: ["gold"],
+    image: img.lumeraWatch,
+    isNew: true,
+  },
+  {
+    id: "w5",
+    name: "Sovereign Timepiece",
+    category: "watches",
+    price: 2650,
+    description: "A classic dark velvet box presentation holding a gold executive wristwatch.",
+    material: "18k gold plating, swiss movement",
+    metals: ["gold"],
+    image: img.sovereign,
+  },
+  {
+    id: "w6",
+    name: "Voyager Watch",
+    category: "watches",
+    price: 2200,
+    description: "Sleek, modern minimalist luxury watch designed with dark tones and clean lines.",
+    material: "Matte black stainless steel",
+    metals: ["silver"],
+    image: img.voyager,
+  },
 
-  // --- Luxury / Special Additions ---
+  // ==================== LUXURY ====================
   {
     id: "l1",
     name: "Eternal",
@@ -226,16 +345,6 @@ export const products: Product[] = [
   },
   {
     id: "l2",
-    name: "Solaria",
-    category: "necklaces",
-    price: 1950,
-    description: "Radiant high-jewellery design celebrating brilliance and organic asymmetry.",
-    material: "18k gold and fine gemstones",
-    metals: ["gold"],
-    image: img.solaria,
-  },
-  {
-    id: "l3",
     name: "Teardrop",
     category: "luxury",
     price: 1450,
@@ -245,7 +354,7 @@ export const products: Product[] = [
     image: img.teardrop,
   },
   {
-    id: "l4",
+    id: "l3",
     name: "Crown",
     category: "luxury",
     price: 2800,
@@ -253,5 +362,16 @@ export const products: Product[] = [
     material: "18k yellow gold",
     metals: ["gold"],
     image: img.crown,
+  },
+  {
+    id: "l4",
+    name: "Celeste High Jewelry Set",
+    category: "luxury",
+    price: 4500,
+    description: "A masterwork luxury necklace and earring ensemble set in polished cream casing.",
+    material: "18k gold, white diamonds",
+    metals: ["gold"],
+    image: img.celeste,
+    featured: true,
   },
 ];
