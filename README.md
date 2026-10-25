@@ -59,4 +59,4 @@ Styling: Tailwind CSS / NativeWind
 
 Icons & Images: expo-image, expo-linear-gradient
 
-Language: TypeScript
+Language: TypeScript.
