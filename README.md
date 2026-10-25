@@ -1,50 +1,62 @@
-# Welcome to your Expo app 👋
+# LUXE — Luxury Jewelry & Watch E-Commerce App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**LUXE** is a premium mobile shopping application built with **React Native** and **Expo**. Designed with a minimalist, Scandinavian-inspired editorial aesthetic, the app offers an ultra-luxurious browsing experience for high-end jewelry, fine timepieces, and exclusive membership rewards.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- **Editorial Visual Experience**: High-resolution, square 1:1 product photography with soft studio lighting and ivory/champagne aesthetics.
+- **Categorized Catalog**: Fine rings, necklaces, earrings, bracelets, and luxury watches.
+- **Modular Asset Architecture**: Decoupled asset registries (`images.ts`, `collections.ts`, `products.ts`) for clean scaling and asset management.
+- **Premium Membership Tier**: Integrated subscription plan cards (`PlanCard`, `BenefitRow`) and automated member discount logic on the cart screen.
+- **Interactive UI Components**: Horizonally scrollable collection rows, dynamic section headers with brand logo support, and smooth screen transitions using `expo-image` and `expo-linear-gradient`.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 📁 Project Structure
 
-In the output, you'll find options to open the app in a
+```text
+luxe/
+├── assets/
+│   └── products/          # High-res 1:1 product photography & logos
+├── app/
+│   └── (tabs)/            # Main app navigation & cart screen
+└── src/
+    ├── components/        # Reusable UI components (CollectionsRow, PlanCard, etc.)
+    ├── data/              # Decoupled data models (products, collections, images, plans)
+    ├── types/             # TypeScript type definitions
+    └── utils/             # Pricing calculations & member discount helpers
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+    🚀 Getting Started
+Prerequisites
+Node.js (v18 or higher)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Expo Go app on iOS/Android or an emulator
 
-## Get a fresh project
+Installation
+Clone the repository:
 
-When you're ready, run:
+Bash
+git clone [https://github.com/your-username/luxe.git](https://github.com/your-username/luxe.git)
+cd luxe
+Install dependencies:
 
-```bash
-npm run reset-project
-```
+Bash
+npm install
+Start the development server:
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Bash
+npx expo start
+Run on mobile or emulator:
 
-## Learn more
+Scan the QR code using Expo Go (Android) or the Camera App (iOS).
 
-To learn more about developing your project with Expo, look at the following resources:
+🛠️ Tech Stack
+Framework: React Native / Expo
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Styling: Tailwind CSS / NativeWind
 
-## Join the community
+Icons & Images: expo-image, expo-linear-gradient
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Language: TypeScript
