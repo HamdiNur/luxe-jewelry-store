@@ -37,6 +37,7 @@ export const collections = [
     category: "bracelets" as CategoryId,
     image: img.soleilCuff,
   },
+  
   {
     id: "c5",
     title: "Timeless Precision",
