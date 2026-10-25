@@ -24,7 +24,9 @@ export default function Cart() {
   const setQuantity = useCartStore((s) => s.setQuantity);
   const removeItem = useCartStore((s) => s.removeItem);
   const clear = useCartStore((s) => s.clear);
-  const { lines, subtotal, shipping, total } = useCartLines();
+
+  // (a) Destructured discount from useCartLines
+  const { lines, subtotal, discount, shipping, total } = useCartLines();
 
   if (!hydrated) {
     return (
@@ -124,6 +126,15 @@ export default function Cart() {
 
       <View className="border-t border-line bg-ivory px-5 pb-4 pt-4">
         <SummaryRow label="Subtotal" value={formatPrice(subtotal)} />
+
+        {/* (b) Member Discount row added right after Subtotal */}
+        {discount > 0 && (
+          <SummaryRow
+            label="Member discount (10%)"
+            value={`-${formatPrice(discount)}`}
+          />
+        )}
+
         <SummaryRow
           label="Shipping"
           value={shipping === 0 ? "Free" : formatPrice(shipping)}
