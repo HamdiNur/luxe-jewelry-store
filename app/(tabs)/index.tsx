@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import PromoBanner from "@/components/PromoBanner";
 import SectionHeader from "@/components/SectionHeader";
 import { products } from "@/data/products";
+import { useSearchTracking } from "@/hooks/useSearchTracking";
 import type { CategoryId } from "@/types/product";
 import { Ionicons } from "@expo/vector-icons";
 import { useMemo, useState } from "react";
@@ -24,6 +25,8 @@ export default function Home() {
           p.material.toLowerCase().includes(q)),
     );
   }, [query, category]);
+
+  useSearchTracking(query, filtered.length, "home");
 
   const header = (
     <View>
