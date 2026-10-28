@@ -5,7 +5,9 @@ import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import { ClerkProvider } from "@clerk/expo";
 import { tokenCache } from "@clerk/expo/token-cache";
-
+import { PostHogProvider } from "posthog-react-native";
+import { posthog } from "@/services/analytics";
+import AnalyticsBridge from "@/components/AnalyticsBridge";
 import {
   useFonts,
   CormorantGaramond_500Medium,
@@ -42,8 +44,11 @@ export default function RootLayout() {
 
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
-      <StatusBar style="dark" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <PostHogProvider client={posthog} autocapture={false}>
+        <AnalyticsBridge />
+        <StatusBar style="dark" />
+        <Stack screenOptions={{ headerShown: false }} />
+      </PostHogProvider>
     </ClerkProvider>
   );
 }
