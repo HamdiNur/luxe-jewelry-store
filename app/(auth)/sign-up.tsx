@@ -5,6 +5,7 @@ import { useSignUp } from "@clerk/expo";
 import AuthShell from "@/components/AuthShell";
 import AuthField from "@/components/AuthField";
 import PrimaryButton from "@/components/PrimaryButton";
+import { track } from "@/services/analytics";
 import { getErrorMessage, validateEmail, validatePassword } from "@/utils/validation";
 
 export default function SignUp() {
@@ -17,14 +18,17 @@ export default function SignUp() {
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
   const [formError, setFormError] = useState<string | null>(null);
 
-  const finalize = () =>
-    signUp.finalize({
+  const finalize = async () => {
+    await signUp.finalize({
+      // The (auth) layout redirects to Profile once signed in, so we only handle extra steps here.
       navigate: ({ session }) => {
         if (session?.currentTask) {
           setFormError("Your account needs an extra step that this demo does not support yet.");
         }
       },
     });
+    track("sign_up_completed", { method: "email_password" });
+  };
 
   const handleSubmit = async () => {
     const emailError = validateEmail(email);

@@ -5,6 +5,7 @@ import { useSignIn } from "@clerk/expo";
 import AuthShell from "@/components/AuthShell";
 import AuthField from "@/components/AuthField";
 import PrimaryButton from "@/components/PrimaryButton";
+import { track } from "@/services/analytics";
 import { getErrorMessage, validateEmail } from "@/utils/validation";
 
 export default function SignIn() {
@@ -17,14 +18,16 @@ export default function SignIn() {
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
   const [formError, setFormError] = useState<string | null>(null);
 
-  const finalize = () =>
-    signIn.finalize({
+  const finalize = async () => {
+    await signIn.finalize({
       navigate: ({ session }) => {
         if (session?.currentTask) {
           setFormError("Your account needs an extra step that this demo does not support yet.");
         }
       },
     });
+    track("sign_in_completed", { method: "email_password" });
+  };
 
   const handleSubmit = async () => {
     const emailError = validateEmail(email);
