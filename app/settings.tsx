@@ -1,22 +1,45 @@
-import { useEffect, useState } from "react";
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, Switch, Text, View } from "react-native";
-import Constants from "expo-constants";
-import { useRouter } from "expo-router";
-import { useAuth, useUser } from "@clerk/expo";
+import AuthField from "@/components/AuthField";
+import PrimaryButton from "@/components/PrimaryButton";
+import ScreenHeader from "@/components/ScreenHeader";
 import { useCartStore } from "@/store/cartStore";
 import { useFavoritesStore } from "@/store/favoritesStore";
 import { useOrdersStore } from "@/store/ordersStore";
-import { usePreferencesStore, type PreferenceKey } from "@/store/preferencesStore";
+import {
+  usePreferencesStore,
+  type PreferenceKey,
+} from "@/store/preferencesStore";
 import { getErrorMessage } from "@/utils/validation";
-import ScreenHeader from "@/components/ScreenHeader";
-import AuthField from "@/components/AuthField";
-import PrimaryButton from "@/components/PrimaryButton";
+import { useAuth, useUser } from "@clerk/expo";
+import Constants from "expo-constants";
+import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Switch,
+  Text,
+  View,
+} from "react-native";
 
 function SectionLabel({ children }: { children: string }) {
-  return <Text className="mb-3 mt-8 font-body-medium text-xs uppercase tracking-wider text-muted">{children}</Text>;
+  return (
+    <Text className="mb-3 mt-8 font-body-medium text-xs uppercase tracking-wider text-muted">
+      {children}
+    </Text>
+  );
 }
 
-function ToggleRow({ prefKey, label, hint }: { prefKey: PreferenceKey; label: string; hint: string }) {
+function ToggleRow({
+  prefKey,
+  label,
+  hint,
+}: {
+  prefKey: PreferenceKey;
+  label: string;
+  hint: string;
+}) {
   const value = usePreferencesStore((s) => s[prefKey]);
   const setPreference = usePreferencesStore((s) => s.setPreference);
 
@@ -55,7 +78,8 @@ export default function Settings() {
     const first = firstName.trim();
     const last = lastName.trim();
     if (!first) return setNameError("Enter your first name.");
-    if (first.length > 40 || last.length > 40) return setNameError("Names can be up to 40 characters.");
+    if (first.length > 40 || last.length > 40)
+      return setNameError("Names can be up to 40 characters.");
 
     setNameError(undefined);
     setSaving(true);
@@ -85,13 +109,16 @@ export default function Settings() {
             Alert.alert("Done", "Demo data was cleared.");
           },
         },
-      ]
+      ],
     );
 
   return (
     <View className="flex-1 bg-cream">
       <ScreenHeader title="Settings" />
-      <KeyboardAvoidingView className="flex-1" behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
         <ScrollView
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 48 }}
@@ -103,7 +130,12 @@ export default function Settings() {
               <Text className="mb-4 font-body text-sm text-muted">
                 {user?.primaryEmailAddress?.emailAddress}
               </Text>
-              <AuthField label="First name" value={firstName} onChangeText={setFirstName} autoCapitalize="words" />
+              <AuthField
+                label="First name"
+                value={firstName}
+                onChangeText={setFirstName}
+                autoCapitalize="words"
+              />
               <AuthField
                 label="Last name"
                 value={lastName}
@@ -111,18 +143,44 @@ export default function Settings() {
                 autoCapitalize="words"
                 error={nameError}
               />
-              <PrimaryButton label="Save details" onPress={saveName} loading={saving} />
+              <PrimaryButton
+                label="Save details"
+                onPress={saveName}
+                loading={saving}
+              />
             </>
           ) : (
-            <PrimaryButton label="Sign in to edit your details" onPress={() => router.push("/sign-in")} />
+            <PrimaryButton
+              label="Sign in to edit your details"
+              onPress={() => router.push("/sign-in")}
+            />
           )}
 
           <SectionLabel>Notifications</SectionLabel>
-          <ToggleRow prefKey="orderUpdates" label="Order updates" hint="Saved on this device. Real alerts are not connected in the demo." />
-          <ToggleRow prefKey="newArrivals" label="New arrivals" hint="Hear about new collections first." />
+          <ToggleRow
+            prefKey="orderUpdates"
+            label="Order updates"
+            hint="Saved on this device. Real alerts are not connected in the demo."
+          />
+          <ToggleRow
+            prefKey="newArrivals"
+            label="New arrivals"
+            hint="Hear about new collections first."
+          />
+
+          <SectionLabel>Privacy</SectionLabel>
+          <ToggleRow
+            prefKey="analytics"
+            label="Share usage analytics"
+            hint="Usage data such as screens viewed and items added to cart. Your email and password are never sent."
+          />
 
           <SectionLabel>Demo data</SectionLabel>
-          <PrimaryButton label="Reset demo data" variant="outline" onPress={resetDemoData} />
+          <PrimaryButton
+            label="Reset demo data"
+            variant="outline"
+            onPress={resetDemoData}
+          />
 
           <Text className="mt-10 text-center font-body text-xs leading-5 text-muted">
             LUXE demo build {Constants.expoConfig?.version ?? "1.0.0"}
