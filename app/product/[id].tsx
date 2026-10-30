@@ -3,13 +3,15 @@ import ImageGallery from "@/components/ImageGallery";
 import ProductCard from "@/components/ProductCard";
 import QuantityStepper from "@/components/QuantityStepper";
 import { products } from "@/data/products";
+import { useToggleFavorite } from "@/hooks/useToggleFavorite";
+import { track } from "@/services/analytics";
 import { useCartStore } from "@/store/cartStore";
 import { useFavoritesStore } from "@/store/favoritesStore";
 import type { Metal } from "@/types/product";
 import { formatPrice } from "@/utils/format";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ImageSourcePropType } from "react-native";
 import {
   Alert,
@@ -38,7 +40,7 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((s) => s.addItem);
   const liked = useFavoritesStore((s) => s.ids.includes(id ?? ""));
-  const toggleFavorite = useFavoritesStore((s) => s.toggle);
+  const toggleFavorite = useToggleFavorite();
 
   const related = useMemo(() => {
     if (!product) return [];
@@ -48,6 +50,16 @@ export default function ProductDetails() {
     const others = products.filter((p) => p.category !== product.category);
     return [...sameCategory, ...others].slice(0, 4);
   }, [product]);
+
+  useEffect(() => {
+    if (!product) return;
+    track("product_viewed", {
+      product_id: product.id,
+      product_name: product.name,
+      category: product.category,
+      price: product.price,
+    });
+  }, [product?.id]);
 
   if (!product) {
     return (
@@ -78,6 +90,15 @@ export default function ProductDetails() {
 
   const handleAddToCart = () => {
     addItem({ productId: product.id, metal, size, quantity });
+    track("add_to_cart", {
+      product_id: product.id,
+      product_name: product.name,
+      category: product.category,
+      metal: metal ?? "none",
+      size: size ?? "none",
+      quantity,
+      value: product.price * quantity,
+    });
     Alert.alert(
       "Added to cart",
       `${quantity} x ${product.name}${metal ? ` in ${metalStyle[metal].label}` : ""}${size ? `, size ${size}` : ""}`,
