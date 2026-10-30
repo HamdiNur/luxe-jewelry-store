@@ -2,6 +2,7 @@ import EmptyState from "@/components/EmptyState";
 import QuantityStepper from "@/components/QuantityStepper";
 import SummaryRow from "@/components/SummaryRow";
 import { useCartLines } from "@/hooks/useCartLines";
+import { track } from "@/services/analytics";
 import { useCartStore } from "@/store/cartStore";
 import { formatPrice } from "@/utils/format";
 import { FREE_SHIPPING_THRESHOLD } from "@/utils/pricing";
@@ -106,7 +107,17 @@ export default function Cart() {
                       .join(" · ")}
                   </Text>
                 </View>
-                <Pressable onPress={() => removeItem(item.key)} hitSlop={10}>
+                <Pressable
+                  onPress={() => {
+                    track("remove_from_cart", {
+                      product_id: product.id,
+                      product_name: product.name,
+                      quantity: item.quantity,
+                    });
+                    removeItem(item.key);
+                  }}
+                  hitSlop={10}
+                >
                   <Ionicons name="trash-outline" size={18} color="#9B958A" />
                 </Pressable>
               </View>

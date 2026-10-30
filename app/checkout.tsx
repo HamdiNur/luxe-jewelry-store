@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -7,6 +7,7 @@ import { useAuth } from "@clerk/expo";
 import { useCartLines } from "@/hooks/useCartLines";
 import { useCartStore } from "@/store/cartStore";
 import { useOrdersStore } from "@/store/ordersStore";
+import { track } from "@/services/analytics";
 import { formatPrice } from "@/utils/format";
 import SummaryRow from "@/components/SummaryRow";
 import EmptyState from "@/components/EmptyState";
@@ -19,8 +20,14 @@ export default function Checkout() {
   const addOrder = useOrdersStore((s) => s.addOrder);
 
   // (a) Destructured discount from useCartLines
-  const { lines, subtotal, discount, shipping, total } = useCartLines();
+  const { lines, count, subtotal, discount, shipping, total } = useCartLines();
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (lines.length > 0) {
+      track("checkout_started", { item_count: count, value: total, is_member: discount > 0 });
+    }
+  }, []);
 
   const placeOrder = () => {
     if (!userId) return;
@@ -44,6 +51,7 @@ export default function Checkout() {
       shipping,
       total,
     });
+    track("order_placed", { order_number: number, item_count: count, value: total, discount, demo: true });
     setOrderNumber(number);
     clear();
   };
