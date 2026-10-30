@@ -7,7 +7,7 @@ import type { CategoryId } from "@/types/product";
 import CategoryChips from "@/components/CategoryChips";
 import ProductCard from "@/components/ProductCard";
 import EmptyState from "@/components/EmptyState";
-
+import { useSearchTracking } from "@/hooks/useSearchTracking";
 type SortId = "featured" | "new" | "low" | "high";
 
 const sorts: { id: SortId; label: string }[] = [
@@ -40,6 +40,7 @@ export default function Explore() {
     if (sort === "new") sorted.sort((a, b) => Number(!!b.isNew) - Number(!!a.isNew));
     return sorted;
   }, [query, category, sort]);
+    useSearchTracking(query, results.length, "explore");
 
   const header = (
     <View>

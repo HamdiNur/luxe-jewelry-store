@@ -6,13 +6,14 @@ import { Ionicons } from "@expo/vector-icons";
 import type { Product } from "@/types/product";
 import { formatPrice } from "@/utils/format";
 import { useFavoritesStore } from "@/store/favoritesStore";
+import { useToggleFavorite } from "@/hooks/useToggleFavorite";
 
 type Props = { product: Product; onPress?: () => void };
 
 export default function ProductCard({ product, onPress }: Props) {
   const router = useRouter();
   const liked = useFavoritesStore((s) => s.ids.includes(product.id));
-  const toggle = useFavoritesStore((s) => s.toggle);
+  const toggleFavorite = useToggleFavorite();
 
   const open = () => {
     if (onPress) return onPress();
@@ -38,7 +39,7 @@ export default function ProductCard({ product, onPress }: Props) {
           </View>
         )}
         <Pressable
-          onPress={() => toggle(product.id)}
+          onPress={() => toggleFavorite(product.id)}
           hitSlop={8}
           className="absolute right-3 top-3 h-9 w-9 items-center justify-center rounded-full bg-white/90"
         >
