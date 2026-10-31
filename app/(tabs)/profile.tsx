@@ -8,6 +8,7 @@ import MenuRow from "@/components/MenuRow";
 import { useMyOrders } from "@/hooks/useMyOrders";
 import { useMembership } from "@/hooks/useMembership";
 import { useCartLines } from "@/hooks/useCartLines";
+import { track } from "@/services/analytics";
 import { useFavoritesStore } from "@/store/favoritesStore";
 import { formatDate } from "@/utils/format";
 
@@ -44,6 +45,7 @@ export default function Profile() {
         text: "Sign out",
         style: "destructive",
         onPress: async () => {
+          track("sign_out", { source: "profile" });
           try {
             await signOut();
           } catch {

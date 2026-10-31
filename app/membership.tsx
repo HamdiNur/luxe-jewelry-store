@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -8,6 +8,7 @@ import { useAuth } from "@clerk/expo";
 import { plans } from "@/data/plans";
 import type { PlanId } from "@/types/membership";
 import { useMembership } from "@/hooks/useMembership";
+import { track } from "@/services/analytics";
 import { formatDate, formatPrice } from "@/utils/format";
 import ScreenHeader from "@/components/ScreenHeader";
 import BenefitRow from "@/components/BenefitRow";
@@ -23,6 +24,10 @@ export default function Membership() {
   const [selected, setSelected] = useState<PlanId>("yearly");
   const [busy, setBusy] = useState(false);
 
+  useEffect(() => {
+    track("membership_viewed", { is_member: isMember });
+  }, []);
+
   const selectedPlan = plans.find((p) => p.id === selected) ?? plans[0];
   const activePlan = plans.find((p) => p.id === plan);
 
@@ -35,6 +40,7 @@ export default function Membership() {
     // Pretend to process, so the flow feels real. No payment happens anywhere.
     await new Promise((resolve) => setTimeout(resolve, 900));
     subscribe(selected);
+    track("subscription_started", { plan: selected, price: selectedPlan.price, demo: true });
     setBusy(false);
     Alert.alert("Welcome to LUXE Premium", "Your demo membership is active. No payment was taken.");
   };
@@ -46,6 +52,7 @@ export default function Membership() {
         text: "Cancel membership",
         style: "destructive",
         onPress: () => {
+          track("subscription_cancelled", { plan: plan ?? "unknown", demo: true });
           cancel();
           Alert.alert("Membership cancelled", "You can rejoin whenever you like.");
         },
